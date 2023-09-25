@@ -24,14 +24,13 @@ export class ContentComponent implements OnInit {
     this.setValueToContent(this.id)
   }
 
-  setValueToContent(id:string){
-    const result = dataFake.filter(article => article.id === id)
+  setValueToContent(id:string | null){
+    const result = dataFake.filter(article => article.id === id)[0]
 
-    result.
+    this.photoCover = result.photoCover
+    this.cardTitle = result.cardTitle
+    this.cardText = result.cardText
 
-  //   if(!result){
-  //     this.cardTitle = result.title
-  //   }
   }
 
 }
