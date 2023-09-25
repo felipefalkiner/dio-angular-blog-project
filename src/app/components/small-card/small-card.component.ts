@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { dataFake } from 'src/app/data/dataFake';
 
 @Component({
   selector: 'app-small-card',
@@ -7,13 +9,23 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SmallCardComponent implements OnInit {
 
-  @Input() photoCover:string = '';
-  @Input() cardTitle:string = '';
-  @Input() id:string = '1';
+  @Input() photoCover:string = 'https://picsum.photos/850/350';
+  @Input() cardTitle:string = 'Temporary Title';
+  @Input() id:string|null = '1';
+  
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setValueToContent(this.id)
+  }
+
+  setValueToContent(id:string | null){
+    const result = dataFake.filter(article => article.id === id)[0]
+
+    this.photoCover = result.photoCover
+    this.cardTitle = result.cardTitle
+
   }
 
 }
